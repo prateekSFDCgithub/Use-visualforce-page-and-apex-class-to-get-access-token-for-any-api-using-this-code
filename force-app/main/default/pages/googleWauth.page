@@ -1,0 +1,15 @@
+<apex:page standardController="Contact" extensions="googleauthclass" showHeader="false" sidebar="false" standardStylesheets="false">
+    <apex:form >
+        <apex:commandButton value="Authorize Google" action="{!redirectToGoogle}"/>
+        
+        <!-- Display authorization code -->
+        <apex:outputText value="{!authCode}" rendered="{!NOT(ISBLANK(authCode))}" />
+
+        <!-- Button to request Access Token after getting Authorization Code -->
+        <apex:commandButton value="Get Access Token" action="{!getAccessToken}" rendered="{!NOT(ISBLANK(authCode))}" />
+        
+        <!-- Display Access Token -->
+        <apex:outputText value="Access Token: {!accessToken}" rendered="{!NOT(ISBLANK(accessToken))}"/>
+        <apex:outputText value="{!contactId}" rendered="{!NOT(ISBLANK(contactId))}" />
+    </apex:form>
+</apex:page>
